@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Caveat';
+  src: url('../fonts/message/Caveat/Caveat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Courgette';
+  src: url('../fonts/message/Courgette/Courgette-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/message/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../fonts/message/Oswald/Oswald-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PT_Serif';
+  src: url('../fonts/message/PT_Serif/PT_Serif-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

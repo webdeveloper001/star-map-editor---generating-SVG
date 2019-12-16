@@ -1,0 +1,447 @@
+body {
+	background-color: white;
+}
+select.dropdown {
+
+}
+.btn {
+	border: none;
+	border-radius: 2px;
+}
+.btn.primary {
+	background-color: #329e5e;
+	color: white;
+}
+
+.star-map-container {
+	display: flex;
+}
+.poster-preview {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e8e8e8;
+	height: 100vh;
+}
+.poster-editor {
+	width: 35vw;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.poster-editor h2 {
+	color: black;
+}
+.poster-editor h2:focus {
+	outline: none;
+}
+.poster-editor h2.ui-accordion-header{
+	border: none;
+	border-bottom: 1px solid #c5c5c5;
+	background: transparent;
+	font-size: 22px;
+}
+.ui-widget-content {
+	border: none;
+}
+.poster-editor h2.ui-state-active {
+	background-color: white;
+}
+.poster-editor h2.ui-state-active .ui-icon {
+    background-image: url(../js/lib/jquery/images/ui-icons_444444_256x240.png);
+}
+.poster-editor .form-group {
+	display: flex;
+	margin-bottom: 10px;
+}
+.poster-editor .form-group label {
+	font-weight: normal;
+	width: 20%;
+	margin-top: 10px;
+}
+
+.map-preview {
+	max-width: 550px;
+	min-width: 550px;
+	height: 750px;
+	border: 1px solid;
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	background-color: white;
+}
+.map-preview.full-design #celestial-map {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 0;
+    top: 0;
+    margin-top: 0;
+}
+#border-mask {
+	z-index: 1;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    bottom: 20px;
+    display: block;
+    border: 2px solid;
+}
+#celestial-map > canvas {
+	width: 500px !important;
+	height: 500px !important;
+}
+.map-preview.full-design #celestial-map > canvas {
+    transform: translate(-300px, -210px);
+	width: 1200px !important;
+	height: 1200px !important;
+}
+.map-preview.full-design #message-box * {
+	color: white;
+}
+.map-preview.heart-design #celestial-map {
+	-webkit-mask-image: url(heart.svg);
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: 87%;
+	-webkit-mask-position: center;
+}
+.map-preview.frame-yes {
+	border-width: 20px;
+}
+.map-preview.frame-yes #width-indicator {
+	margin-top: 25px;
+}
+.map-preview.frame-yes #height-indicator {
+    transform: rotate(-90deg) translateY(-10px);
+}
+.map-preview.border-art:not(.heart-design) #celestial-map {
+	transform: scale(0.9);
+}
+
+#celestial-map {
+	width: 500px !important;
+	height: 500px !important;
+	border-radius: 250px;
+	margin-top: 100px;
+}
+#celestial-map canvas {
+	/*display: none;*/
+}
+#celestial-map svg {
+	/*transform: scale(.333333);*/
+    transform-origin: 0 0;
+}
+#celestial-form {
+	display: none;
+}
+#drawing-now {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+}
+#width-indicator {
+	position: absolute;
+	top: 100%;
+	margin-top: 10px;
+}
+#height-indicator {
+	position: absolute;
+    left: 100%;
+    text-align: center;
+    transform: rotate(-90deg) translateY(-30px);
+    white-space: nowrap;
+    top: calc(50% - 50px);
+    width: 100px;
+}
+#design-bw-mask {
+	display: none;
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    backdrop-filter: invert();
+    z-index: 100;
+}
+#message-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    box-sizing: content-box;
+}
+#message-box[data-font="Caveat"] * {
+	font-family: Caveat;
+}
+#message-box[data-font="Courgette"] * {
+	font-family: Courgette;
+}
+#message-box[data-font="Lato"] * {
+	font-family: Lato;
+}
+#message-box[data-font="Oswald"] * {
+	font-family: Oswald;
+}
+#message-box[data-font="PT_Serif"] * {
+	font-family: PT_Serif;
+}
+#message-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 40px;
+	flex: 1;
+}
+#message-subtitle {
+	font-size: 18px;
+}
+#message-message {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+#border-art-mask {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+	pointer-events: none;
+	border-radius: 500px;
+	z-index: 10;
+	transform: scale(1.19);
+}
+
+#PosterForm .card-header {
+	padding: 10px;
+}
+#PosterForm .card-header label {
+	font-size: 22px;
+	cursor: pointer;
+	padding-left: 15px;
+}
+#PosterForm .number-circle {
+	display: inline-flex;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 25px;
+	height: 25px;
+	border-radius: 25px;
+	background-color: #329e5e;
+	color: white;
+	margin-right: 10px;
+	font-style: normal;
+	font-size: 12px;
+}
+
+.frame-selector-wrapper,
+.map-design-wrapper,
+.map-color-wrapper {
+	display: flex;
+	overflow-x: auto;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+.frame-item,
+.map-design-item,
+.map-color-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 1rem;
+}
+.frame-item img,
+.map-design-item img {
+	min-width: 100px;
+    width: 100px;
+    height: 137px;
+}
+.map-color-item .color-preview {
+	display: block;
+	width: 100px;
+	height: 137px;
+}
+
+.img-radio-item {
+	cursor: pointer;
+}
+.img-radio-item span {
+	margin-top: 20px;
+	z-index: 1;
+}
+.img-radio-item--active img,
+.img-radio-item--active .color-preview {
+	box-shadow: 0 0 2px 3px #329e5e;
+	z-index: 0;
+}
+.img-radio-item--active {
+	position: relative;
+}
+.img-radio-item--active:after {
+	content: '✓';
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    background: #329e5e;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-toggles-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.post-size-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+.post-size-item {
+	width: 50%;
+	margin-bottom: 1rem;
+	position: relative;
+}
+.post-size-item label {
+	width: auto;
+	margin-top: 2px;
+	margin-left: 30px;
+}
+
+.card-body .col-form-label,
+.card-body .h6 {
+	font-weight: bold;
+}
+
+#collapseSpecialMoment .time-picker,
+#collapseSpecialMoment .date-picker {
+	display: flex;
+}
+#collapseSpecialMoment .time-picker select,
+#collapseSpecialMoment .date-picker select {
+	margin-right: 10px;
+}
+
+.messages-wrapper input {
+	margin-bottom: 5px;
+}
+.show-toggle-item  {
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0 10px;
+    box-sizing: border-box;
+    min-width: 230px;
+}
+
+#collapsePersonalizePoster .section {
+	margin-top: 10px;
+}
+.checkout-bar {
+	position: absolute;
+	width: 35vw;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	background-color: #a8a8a8;
+	padding: 10px 20px;
+	box-sizing: border-box;
+}
+#result-price,
+#checkout-button {
+	white-space: nowrap;
+	color: white;
+	background-color: #a8a8a8;
+	padding: 0;
+	margin: 0;
+	border: none;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.editor-pane {
+	max-height: calc(100vh - 270px);
+	overflow-y: auto;
+}
+
+#mobile-view-toggle {
+	display: none;
+}
+
+/*Special style for map-preview height adjust on ipad*/
+@media only screen and (max-height: 800px) {
+	.map-preview {
+		transform: scale(0.8);
+	}
+}
+@media only screen and (max-width: 700px) {
+	.map-preview {
+		transform: scale(0.5);
+	}
+}
+
+@media only screen and (max-width: 1023px) {
+	.poster-preview,
+	.poster-editor {
+		width: 100vw;
+		height: 100vh;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: white;
+	}
+	.poster-preview {
+		z-index: 1000;
+	    padding-bottom: 50px;
+   		box-sizing: border-box;
+	}
+	.poster-editor {
+		z-index: 999;
+		padding-top: 30px;
+	}
+	.checkout-bar {
+		width: 100vw;
+		z-index: 1001;
+	}
+	#mobile-view-toggle {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 50px;
+		z-index: 1050;
+		background-color: #329e5e;
+		color: white;
+		border-radius: 0 0 10px 10px;
+		padding: 3px 15px 5px;
+	}
+	.ui-accordion .ui-accordion-content {
+		padding: 10px 20px;
+	}
+	.poster-editor .form-group label {
+		width: 30%;
+	}
+}

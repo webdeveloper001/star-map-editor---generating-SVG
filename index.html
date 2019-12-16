@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Celestial Wall Map</title>
+
+  <!-- Font Icon -->
+  <link rel="stylesheet" href="./fonts/material-icon/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="./js/lib/nouislider/nouislider.min.css">
+  <link rel="stylesheet" href="./js/lib/jquery/jquery-ui.css">
+
+  <!-- Main css -->
+  <link rel="stylesheet" href="./css/form-style.css">
+
+  <link rel="stylesheet" href="./css/celestial.css">
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/switch.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="star-map-container">
+    <div class="poster-preview">
+      <div class="map-preview mt-5">
+        <div id="border-mask"></div>
+        <div class="design-mask" id="design-heart-mask"></div>
+        <div class="design-mask" id="design-bw-mask"></div>
+        <div id="drawing-now">
+          Generating...
+        </div>
+        <div id="celestial-map">
+          <div id="border-art-mask">
+            <img src="css/Compas - with innerline.svg"/>
+          </div>
+        </div>
+        <div id="width-indicator"></div>
+        <div id="height-indicator"></div>
+        <div id="message-box" data-font="Lato">
+          <div id="message-title">
+            Title
+          </div>
+          <div id="message-subtitle">
+            Subtitle
+          </div>
+          <div id="message-coordinate">
+            Coordinate
+          </div>
+          <div id="message-datetime">
+            Date Time
+          </div>
+          <div id="message-message">
+            Message
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="celestial-form"></div>
+    <div class="poster-editor">
+      <div class="accordion" id="PosterForm">
+          <h2 id="headingSpecialMoment">
+            <i class="number-circle">1</i>
+            Your special moment
+          </h2>
+          <div class="editor-pane" id="collapseSpecialMoment">
+            <div class="form-group">
+              <label for="location" class="col-form-label">Location:</label>
+              <div class="">
+                <input 
+                  data-key="mapOptions.location.label"
+                  type="text" class="form-control map-form-item" id="location" placeholder="location"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="date" class="col-form-label">Date:</label>
+              <div class="date-picker">
+                <div class="select-list">
+                  <select class="datetime-select dropdown" id="date-year">
+                  </select>
+                </div>
+                <div class="select-list">
+                  <select class="datetime-select dropdown" id="date-month">
+                  </select>
+                </div>
+                <div class="select-list">
+                  <select class="datetime-select dropdown" id="date-date">
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="time" class="col-form-label"></label>
+              <button class="btn primary" id="exact-time-toggle">Exact Time</button>
+              <div class="time-picker">
+                <div class="select-list">
+                  <select class="datetime-select dropdown" id="time-hour">
+                  </select>
+                </div>
+                <div class="select-list">
+                  <select class="datetime-select dropdown" id="time-minute">
+                  </select>
+                </div>
+                <div class="select-list">
+                  <select class="datetime-select dropdown" id="time-ap">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="title" class="col-form-label">Messages:</label>
+              <div class="messages-wrapper">
+                <input
+                  data-key="message.title"
+                  type="text" class="form-control mb-2 map-form-item" id="title" placeholder="Title"
+                />
+                <input
+                  data-key="message.subtitle"
+                  type="text" class="form-control mb-2 map-form-item" id="subtitle" placeholder="Subtitle"
+                />
+                <input
+                  data-key="message.message"
+                  type="text" class="form-control mb-2 map-form-item" id="message" placeholder="Message"
+                />
+              </div>
+            </div>
+          </div>
+          <h2 id="headingPersonalizePoster">
+            <i class="number-circle">2</i>
+            Personalise your poster
+          </h2>
+          <div class="editor-pane" id="collapsePersonalizePoster" >
+            <div class="section">
+              <h3>Choose your design:</h3>
+              <div class="map-design-wrapper map-form-item map-form-item--list" data-key="design">
+                <div class="map-design-item img-radio-item map-form-item--value" data-value="circular-design">
+                  <img src="css/design-thumbs/circle.png"/>
+                  <span>Circular design</span>
+                </div>
+                <div class="map-design-item img-radio-item map-form-item--value" data-value="full-design">
+                  <img src="css/design-thumbs/full.png"/>
+                  <span>Full design</span>
+                </div>
+                <div class="map-design-item img-radio-item map-form-item--value" data-value="bw-design">
+                  <img src="css/design-thumbs/bw.png"/>
+                  <span>Black/White</span>
+                </div>
+                <div class="map-design-item img-radio-item map-form-item--value" data-value="heart-design">
+                  <img src="css/design-thumbs/heart.png"/>
+                  <span>Heart design</span>
+                </div>
+              </div>
+            </div>
+            <div class="section">
+              <h3>Choose your Color:</h3>
+              <div class="map-color-wrapper map-form-item map-form-item--list" data-key="mapOptions.color">
+                <div class="map-color-item img-radio-item map-form-item--value" data-value="#181b25">
+                  <div class="color-preview"></div>
+                  <span>Midnight Blue</span>
+                </div>
+                <div class="map-color-item img-radio-item map-form-item--value" data-value="#010101">
+                  <div class="color-preview"></div>
+                  <span>Black</span>
+                </div>
+                <div class="map-color-item img-radio-item map-form-item--value" data-value="#045381">
+                  <div class="color-preview"></div>
+                  <span>Twilight Blue</span>
+                </div>
+                <div class="map-color-item img-radio-item map-form-item--value" data-value="#313d4d">
+                  <div class="color-preview"></div>
+                  <span>Gray</span>
+                </div>
+                <div class="map-color-item img-radio-item map-form-item--value" data-value="#f8eedf">
+                  <div class="color-preview"></div>
+                  <span>Cosmic Latte</span>
+                </div>
+              </div>
+            </div>
+            <div class="section">
+              <h3>Choose what to show:</h3>
+              <div class="show-toggles-wrapper ml-3">
+                <div class="show-toggle-item custom-checkbox">
+                  <label class="switch" for="gridShow">
+                    <input data-key="mapOptions.grid" type="checkbox" class="custom-control-input map-form-item" id="gridShow">
+                    <div class="slider round"></div>
+                  </label>
+                  <label class="custom-control-label" for="gridShow">Grid</label>
+                </div>
+                <div class="show-toggle-item custom-checkbox">
+                  <label class="switch" for="planetNamesShow">
+                    <input data-key="mapOptions.planetName" type="checkbox" class="custom-control-input map-form-item" id="planetNamesShow">
+                    <div class="slider round"></div>
+                  </label>
+                  <label class="custom-control-label" for="planetNamesShow">Planet Names</label>
+                </div>
+                <div class="show-toggle-item custom-checkbox">
+                  <label class="switch" for="milkywayShow">
+                    <input data-key="mapOptions.showMK" type="checkbox" class="custom-control-input map-form-item" id="milkywayShow">
+                    <div class="slider round"></div>
+                  </label>
+                  <label class="custom-control-label" for="milkywayShow">Show Milkyway</label>
+                </div>
+                <div class="show-toggle-item custom-checkbox">
+                  <label class="switch" for="constellationsShow">
+                    <input data-key="mapOptions.constellations" type="checkbox" class="custom-control-input map-form-item" id="constellationsShow">
+                    <div class="slider round"></div>
+                  </label>
+                  <label class="custom-control-label" for="constellationsShow">Constellations</label>
+                </div>
+                <div class="show-toggle-item custom-checkbox">
+                  <label class="switch" for="borderShow">
+                    <input data-key="border" type="checkbox" class="custom-control-input map-form-item" id="borderShow">
+                    <div class="slider round"></div>
+                  </label>
+                  <label class="custom-control-label" for="borderShow">Border</label>
+                </div>
+                <div class="show-toggle-item custom-checkbox">
+                  <label class="switch" for="borderArtShow">
+                    <input data-key="borderArt" type="checkbox" class="custom-control-input map-form-item" id="borderArtShow">
+                    <div class="slider round"></div>
+                  </label>
+                  <label class="custom-control-label" for="borderArtShow">BorderArt</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 id="headingPosterSize">
+            <i class="number-circle">3</i>
+            Choose Poster size
+          </h2>
+          <div class="editor-pane" id="collapsePosterSize" >
+            <div class="post-size-wrapper map-form-item map-form-item--list" data-key="size">
+              <div class="post-size-item custom-radio">
+                <input
+                  type="radio" id="posterSize1" name="posterSize"
+                  class="custom-control-input map-form-item--value"
+                  data-value="33.1x46.8 in"
+                />
+                <span class="check"></span>
+                <label class="custom-control-label" for="posterSize1">A0</label>
+              </div>
+              <div class="post-size-item custom-radio">
+                <input
+                  type="radio" id="posterSize2" name="posterSize"
+                  class="custom-control-input map-form-item--value"
+                  data-value="23.4x33.1 in"
+                />
+                <span class="check"></span>
+                <label class="custom-control-label" for="posterSize2">A1</label>
+              </div>
+              <div class="post-size-item custom-radio">
+                <input
+                  type="radio" id="posterSize3" name="posterSize"
+                  class="custom-control-input map-form-item--value"
+                  data-value="16.5x23.4 in"
+                />
+                <span class="check"></span>
+                <label class="custom-control-label" for="posterSize3">A2</label>
+              </div>
+              <div class="post-size-item custom-radio">
+                <input
+                  type="radio" id="posterSize4" name="posterSize"
+                  class="custom-control-input map-form-item--value"
+                  data-value="11.7x16.5 in"
+                />
+                <span class="check"></span>
+                <label class="custom-control-label" for="posterSize4">A3</label>
+              </div>
+              <div class="post-size-item custom-radio">
+                <input
+                  type="radio" id="posterSize5" name="posterSize"
+                  class="custom-control-input map-form-item--value"
+                  data-value="8.3x11.7 in"
+                />
+                <span class="check"></span>
+                <label class="custom-control-label" for="posterSize5">A4</label>
+              </div>
+            </div>
+            <h3>Include frame?</h3>
+            <div class="frame-selector-wrapper map-form-item map-form-item--list" data-key="frame">
+              <div class="frame-item img-radio-item map-form-item--value" data-value="no">
+                <img src="css/frame-thumbs/no.png"/>
+                <span>No frame</span>
+              </div>
+              <div class="frame-item img-radio-item map-form-item--value" data-value="yes">
+                <img src="css/frame-thumbs/yes.png"/>
+                <span>Frame</span>
+              </div>
+            </div>
+            <h3>Font</h3>
+            <select data-key="message.font" class="dropdown map-form-item" id="font">
+              <option class="map-form-item--value" value="Caveat">Caveat</option>
+              <option class="map-form-item--value" value="Courgette">Courgette</option>
+              <option class="map-form-item--value" value="Lato">Lato</option>
+              <option class="map-form-item--value" value="Oswald">Oswald</option>
+              <option class="map-form-item--value" value="PT_Serif">PT_Serif</option>
+            </select>
+          </div>
+      </div>
+    </div>
+    <div class="font_preload" style="opacity: 0; position: absolute; pointer-events: none;">
+      <span style="font-family: Caveat">Caveat</span>
+      <span style="font-family: Courgette">Courgette</span>
+      <span style="font-family: Lato">Lato</span>
+      <span style="font-family: Oswald">Oswald</span>
+      <span style="font-family: PT_Serif">PT_Serif</span>
+    </div>
+    <div class="checkout-bar">
+      <label id="result-price">
+        $22
+      </label>
+      <button id="checkout-button">
+          CHECKOUT >
+      </button>
+    </div>
+    <div id="mobile-view-toggle">
+      Map Editor
+    </div>
+  </div>
+  <script type="text/javascript" src="./js/lib/d3.min.js"></script>
+  <script type="text/javascript" src="./js/lib/d3.geo.projection.min.js"></script>
+  <script type="text/javascript" src="./js/lib/canvas2svg.min.js"></script>
+  <script type="text/javascript" src="./js/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/lib/jquery/jquery-ui.min.js"></script>
+
+  <script type="text/javascript" src="./js/lib/celestial0.6.js"></script>
+
+  <script type="text/javascript" src="./js/lib/nouislider/nouislider.min.js"></script>
+  <script type="text/javascript" src="./js/lib/wnumb/wNumb.js"></script>
+  <script type="text/javascript" src="./js/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="./js/lib/jquery-validation/dist/additional-methods.min.js"></script>
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOxorsb3_U8kCnjQtglK0h3BsUWDobcl0&libraries=places"></script>
+
+  <script type="text/javascript" src="./js/script.js"></script>
+</body>
+</html>
